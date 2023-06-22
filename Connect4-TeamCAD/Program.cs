@@ -246,7 +246,8 @@ public class Connect4Game
     //sets the player discs
     private void SelectPlayers()
     {
-
+        players[0] = new HumanPlayer('X');
+        players[1] = new HumanPlayer('O');
     }
 }
 
