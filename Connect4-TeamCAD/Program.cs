@@ -26,7 +26,7 @@ public class HumanPlayer : Player
     //overrides the GetMove() method prompting player to enter number or quit
     public override int GetMove()
     {
-        Console.Write("Player {0}, enter column number (1-7) or 'q' to quit the game: ", disc);
+        Console.Write("Enter column number (1-7) or 'q' to quit the game: ");
         string input = Console.ReadLine();
 
         if (input.ToLower() == "q")
@@ -94,7 +94,7 @@ public class Connect4Game
         {
             PrintBoard();
             Player currentPlayer = players[currentPlayerIndex];
-            Console.WriteLine("Player {0}'s turn:", currentPlayer.disc);
+            Console.WriteLine($"Player {currentPlayerIndex + 1}'s turn:");
             int column = currentPlayer.GetMove();
 
             if (column == -1)
@@ -110,7 +110,7 @@ public class Connect4Game
             if (CheckWin(row, column))
             {
                 PrintBoard();
-                Console.WriteLine("Player {0} wins! Congratulations!!!", currentPlayer.disc);
+                Console.WriteLine($"Player {currentPlayerIndex + 1} wins! Congratulations!!!");
                 gameOver = true;
             }
             else if (IsBoardFull())
@@ -264,8 +264,28 @@ public class Connect4Game
     //sets the player discs
     private void SelectPlayers()
     {
-        players[0] = new HumanPlayer('X');
-        players[1] = new HumanPlayer('O');
+        Console.WriteLine("Select an opponent:");
+        Console.WriteLine("1. Play against another human");
+        Console.WriteLine("2. Play against AI");
+        Console.Write("Enter your choice (1-2): ");
+
+        int choice;
+        while (!int.TryParse(Console.ReadLine(), out choice) || (choice != 1 && choice != 2))
+        {
+            Console.WriteLine("Invalid choice. Please try again.");
+            Console.Write("Enter your choice (1-2): ");
+        }
+
+        if (choice == 1)
+        {
+            players[0] = new HumanPlayer('X');
+            players[1] = new HumanPlayer('O');
+        }
+        else
+        {
+            players[0] = new HumanPlayer('X');
+            players[1] = new ComputerPlayer('O');
+        }
     }
 }
 
