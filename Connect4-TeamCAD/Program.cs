@@ -1,5 +1,6 @@
 using System;
 
+//setup base class for the players
 public abstract class Player
 {
     //disc representing game pieces of 'X' or 'O'
@@ -42,8 +43,10 @@ public class HumanPlayer : Player
     }
 }
 
+//defining game logic
 public class Connect4Game
 {
+    //define private members
     private char[,] board;
     private Player[] players;
     private int currentPlayerIndex;
@@ -58,9 +61,16 @@ public class Connect4Game
         gameOver = false;
         InitializeBoard();
     }
-
+    
     public void PlayGame()
     {
+        Console.WriteLine("Team CAD welcomes you play Connect 4!");
+        Console.WriteLine("Player 1: X");
+        Console.WriteLine("Player 2: O");
+        Console.WriteLine();
+
+        SelectPlayers();
+        
         //loops until 'gameOver' is true
         while (!gameOver)
         {
