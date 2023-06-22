@@ -43,6 +43,24 @@ public class HumanPlayer : Player
     }
 }
 
+//define ComputerPlayer inheriting from 'Player' class
+public class ComputerPlayer : Player
+{
+    private Random random;
+    //intialize Random to generate random moves for AI player
+    //constructor initializes this random object
+    public ComputerPlayer(char disc) : base(disc)
+    {
+        random = new Random();
+    }
+
+    //GetMove() method returns a random column number between 0 and 6
+    public override int GetMove()
+    {
+        return random.Next(0, 7);
+    }
+}
+
 //defining game logic
 public class Connect4Game
 {
